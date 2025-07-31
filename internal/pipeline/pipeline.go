@@ -8,10 +8,10 @@ import (
 
 	"go.uber.org/zap"
 
-	"github.com/Mehmetymw/cdc2vec/internal/config"
-	"github.com/Mehmetymw/cdc2vec/internal/embeddings"
-	"github.com/Mehmetymw/cdc2vec/internal/types"
-	"github.com/Mehmetymw/cdc2vec/internal/util"
+	"github.com/mehmetymw/cdc2vec/internal/config"
+	"github.com/mehmetymw/cdc2vec/internal/embeddings"
+	"github.com/mehmetymw/cdc2vec/internal/types"
+	"github.com/mehmetymw/cdc2vec/internal/util"
 )
 
 type Pipeline struct {

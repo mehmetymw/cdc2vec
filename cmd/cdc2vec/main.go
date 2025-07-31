@@ -13,14 +13,14 @@ import (
 
 	"go.uber.org/zap"
 
-	"github.com/Mehmetymw/cdc2vec/internal/cdc/postgres"
-	"github.com/Mehmetymw/cdc2vec/internal/config"
-	"github.com/Mehmetymw/cdc2vec/internal/embeddings"
-	"github.com/Mehmetymw/cdc2vec/internal/pipeline"
-	"github.com/Mehmetymw/cdc2vec/internal/sink/kafka"
-	"github.com/Mehmetymw/cdc2vec/internal/sink/milvus"
-	"github.com/Mehmetymw/cdc2vec/internal/sink/qdrant"
-	"github.com/Mehmetymw/cdc2vec/internal/types"
+	"github.com/mehmetymw/cdc2vec/internal/cdc/postgres"
+	"github.com/mehmetymw/cdc2vec/internal/config"
+	"github.com/mehmetymw/cdc2vec/internal/embeddings"
+	"github.com/mehmetymw/cdc2vec/internal/pipeline"
+	"github.com/mehmetymw/cdc2vec/internal/sink/kafka"
+	"github.com/mehmetymw/cdc2vec/internal/sink/milvus"
+	"github.com/mehmetymw/cdc2vec/internal/sink/qdrant"
+	"github.com/mehmetymw/cdc2vec/internal/types"
 )
 
 type healthz struct {

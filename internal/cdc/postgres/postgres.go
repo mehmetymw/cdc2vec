@@ -7,8 +7,8 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/Mehmetymw/cdc2vec/internal/config"
-	"github.com/Mehmetymw/cdc2vec/internal/types"
+	"github.com/mehmetymw/cdc2vec/internal/config"
+	"github.com/mehmetymw/cdc2vec/internal/types"
 
 	"go.uber.org/zap"
 

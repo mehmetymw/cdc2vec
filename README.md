@@ -168,7 +168,7 @@ services:
 1. **Clone the repository:**
 
 ```bash
-git clone https://github.com/Mehmetymw/cdc2vec.git
+git clone https://github.com/mehmetymw/cdc2vec.git
 cd cdc2vec
 ```
 
