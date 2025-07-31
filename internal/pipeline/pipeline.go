@@ -245,7 +245,16 @@ func (p *Pipeline) processChange(change types.RowChange) error {
 		zap.Int("vector_dim", len(vector)),
 		zap.Any("metadata", metadata))
 	
-	return p.sink.Upsert(id, vector, metadata)
+	if err := p.sink.Upsert(id, vector, metadata); err != nil {
+		p.logger.Error("Failed to upsert to sink", 
+			zap.Error(err),
+			zap.String("id", id),
+			zap.Int("vector_dim", len(vector)))
+		return err
+	}
+	
+	p.logger.Debug("Successfully upserted to sink", zap.String("id", id))
+	return nil
 }
 
 func min(a, b int) int {

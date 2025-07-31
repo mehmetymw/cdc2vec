@@ -25,10 +25,11 @@ type PostgresSource struct {
 
 
 type EmbedConfig struct {
-	Provider  string `yaml:"provider"`
-	Model     string `yaml:"model"`
-	URL       string `yaml:"url"`
-	Normalize bool   `yaml:"normalize"`
+	Provider   string `yaml:"provider"`
+	Model      string `yaml:"model"`
+	URL        string `yaml:"url"`
+	Normalize  bool   `yaml:"normalize"`
+	VectorSize int    `yaml:"vector_size"`
 }
 
 type MilvusSink struct {
@@ -40,6 +41,7 @@ type MilvusSink struct {
 
 type QdrantSink struct {
 	Addr       string `yaml:"addr"`
+	URL        string `yaml:"url"`        // Support both addr and url
 	Collection string `yaml:"collection"`
 	Distance   string `yaml:"distance"`
 }
@@ -106,6 +108,9 @@ func LoadFromEnv() (Config, error) {
 	}
 	if c.HTTP.Addr == "" {
 		c.HTTP.Addr = ":8080"
+	}
+	if c.Embed.VectorSize <= 0 {
+		c.Embed.VectorSize = 768 // Default for most embedding models
 	}
 	
 	return c, nil

@@ -70,10 +70,15 @@ func main() {
 			zap.String("collection", cfg.Sink.Milvus.Collection))
 		sink, err = milvus.New(cfg.Sink.Milvus.Addr, cfg.Sink.Milvus.Collection, cfg.Sink.Milvus.Metric, cfg.Sink.Milvus.IndexType, logger)
 	} else if cfg.Sink.Type == "qdrant" {
+		// Support both addr and url fields for backward compatibility
+		qdrantAddr := cfg.Sink.Qdrant.Addr
+		if qdrantAddr == "" && cfg.Sink.Qdrant.URL != "" {
+			qdrantAddr = cfg.Sink.Qdrant.URL
+		}
 		logger.Info("Creating Qdrant sink",
-			zap.String("addr", cfg.Sink.Qdrant.Addr),
+			zap.String("addr", qdrantAddr),
 			zap.String("collection", cfg.Sink.Qdrant.Collection))
-		sink, err = qdrant.New(cfg.Sink.Qdrant.Addr, cfg.Sink.Qdrant.Collection, cfg.Sink.Qdrant.Distance, logger)
+		sink, err = qdrant.New(qdrantAddr, cfg.Sink.Qdrant.Collection, cfg.Sink.Qdrant.Distance, cfg.Embed.VectorSize, logger)
 	} else if cfg.Sink.Type == "kafka" {
 		logger.Info("Creating Kafka sink",
 			zap.Strings("brokers", cfg.Sink.Kafka.Brokers),

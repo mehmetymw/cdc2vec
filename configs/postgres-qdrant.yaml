@@ -12,10 +12,10 @@ source:
 
 embed:
   provider: "ollama_http"
-  model: "nomic-embed-text"
+  model: "mxbai-embed-large"
   url: "http://localhost:11434"
   normalize: true
-  vector_size: 768
+  vector_size: 1024
 
 sink:
   type: "qdrant"

@@ -1,0 +1,37 @@
+# Git
+.git
+.gitignore
+
+# Documentation
+README.md
+blog.md
+*.md
+
+# Docker
+Dockerfile
+.dockerignore
+docker-compose.yaml
+
+# Build artifacts
+bin/
+*.log
+
+# Test files
+test.sh
+scripts/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+
+# Offsets and data
+offsets/
+data/

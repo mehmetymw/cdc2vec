@@ -1,4 +1,4 @@
-module github.com/mehmetymw/cdc2vec
+module github.com/Mehmetymw/cdc2vec
 
 go 1.24.5
 

@@ -1,44 +1,37 @@
 # Build stage
-FROM golang:1.22-alpine AS builder
+FROM golang:1.21-alpine AS builder
 
-# Install build dependencies
-RUN apk add --no-cache git ca-certificates tzdata
-
-# Set working directory
 WORKDIR /app
+
+# Install git for go modules
+RUN apk add --no-cache git
 
 # Copy go mod files
 COPY go.mod go.sum ./
-
-# Download dependencies
 RUN go mod download
 
 # Copy source code
 COPY . .
 
 # Build the application
-RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build \
-    -ldflags='-w -s -extldflags "-static"' \
-    -a -installsuffix cgo \
-    -o cdc2vec ./cmd/cdc2vec
+RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o cdc2vec ./cmd/cdc2vec
 
 # Final stage
-FROM scratch
+FROM alpine:latest
 
-# Copy ca-certificates from builder
-COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
+# Install ca-certificates for HTTPS requests
+RUN apk --no-cache add ca-certificates tzdata
 
-# Copy timezone data
-COPY --from=builder /usr/share/zoneinfo /usr/share/zoneinfo
+WORKDIR /root/
 
-# Copy the binary
-COPY --from=builder /app/cdc2vec /cdc2vec
+# Copy the binary from builder stage
+COPY --from=builder /app/cdc2vec .
 
-# Create non-root user (using numeric IDs for scratch)
-USER 65534:65534
+# Create directory for offset storage
+RUN mkdir -p /data/offsets
 
 # Expose health check port
 EXPOSE 8080
 
-# Set entrypoint
-ENTRYPOINT ["/cdc2vec"]
+# Run the binary
+CMD ["./cdc2vec"]
