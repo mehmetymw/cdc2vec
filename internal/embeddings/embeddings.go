@@ -10,7 +10,7 @@ import (
 
 	"go.uber.org/zap"
 
-	"github.com/mehmetymw/cdc2vec/internal/config"
+	"github.com/Mehmetymw/cdc2vec/internal/config"
 )
 
 type Provider interface {

@@ -3,7 +3,6 @@ module github.com/Mehmetymw/cdc2vec
 go 1.24.5
 
 require (
-	github.com/google/uuid v1.6.0
 	github.com/jackc/pglogrepl v0.0.0-20250509230407-a9884f6bd75a
 	github.com/jackc/pgx/v5 v5.7.5
 	github.com/milvus-io/milvus-sdk-go/v2 v2.4.2
