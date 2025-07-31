@@ -4,11 +4,6 @@
 
 CDC2Vec is a high-performance, real-time pipeline that captures database changes using Change Data Capture (CDC) and automatically converts them into vector embeddings for storage in vector databases. Perfect for building real-time semantic search, RAG systems, and AI-powered applications.
 
-[![Build Status](https://github.com/Mehmetymw/cdc2vec/workflows/Build%20and%20Push%20Docker%20Image/badge.svg)](https://github.com/Mehmetymw/cdc2vec/actions)
-[![Docker Pulls](https://img.shields.io/docker/pulls/ghcr.io/mehmetymw/cdc2vec)](https://github.com/Mehmetymw/cdc2vec/pkgs/container/cdc2vec)
-[![Go Report Card](https://goreportcard.com/badge/github.com/Mehmetymw/cdc2vec)](https://goreportcard.com/report/github.com/Mehmetymw/cdc2vec)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
 ## ✨ Features
 
 - **Real-time CDC**: Captures database changes instantly using PostgreSQL logical replication
@@ -88,7 +83,8 @@ docker pull ghcr.io/mehmetymw/cdc2vec:latest
 2. **Create a configuration file:**
 
 ```bash
-curl -o config.yaml https://raw.githubusercontent.com/Mehmetymw/cdc2vec/main/config.example.yaml
+curl -o config.yaml https://raw.githubusercontent.com/mehmetymw/cdc2vec/master/configs/postgres-qdrant.yaml
+
 ```
 
 3. **Edit the configuration:**
