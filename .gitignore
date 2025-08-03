@@ -1,0 +1,6 @@
+blog.md
+*.tape
+test.sql
+test-query.json*.env
+config.prod.yaml
+offsets/

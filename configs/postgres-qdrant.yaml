@@ -1,0 +1,38 @@
+source:
+  type: "postgres"
+  postgres:
+    dsn: "postgres://postgres:secret@localhost:5432/testdb?sslmode=disable"
+    slot: "cdc2vec_slot"
+    publication: "cdc2vec_pub"
+    create_publication: true
+    create_slot: true
+    tables:
+      - "public.documents"
+  offset_store: "./offsets"
+
+embed:
+  provider: "ollama_http"
+  model: "mxbai-embed-large"
+  url: "http://localhost:11434"
+  normalize: true
+  vector_size: 1024
+
+sink:
+  type: "qdrant"
+  qdrant:
+    url: "http://localhost:6333"
+    collection: "documents"
+    create_collection: true
+
+mapping:
+  - table: "public.documents"
+    id_column: "id"
+    text_columns: ["title", "content"]
+    metadata_columns: ["created_at", "author"]
+
+batching:
+  batch_size: 2
+  flush_interval_ms: 1000
+
+http:
+  addr: ":8080"
